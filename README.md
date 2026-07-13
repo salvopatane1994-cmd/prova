@@ -1,49 +1,80 @@
-# Tenute Arena — Sito web
+# Tenute Arena — Sito vetrina (clone statico)
 
-Sito vetrina statico di **Tenute Arena** — Olio Extravergine di Oliva Biologico, Piazza Armerina (Sicilia).
+Clone statico **fedele** della parte vetrina del sito ufficiale
+[tenutaarena.com](https://www.tenutaarena.com/) — Olio Extravergine di Oliva
+Biologico, Piazza Armerina (Sicilia).
 
-Realizzato in **HTML, CSS e JavaScript puri**: nessun framework, nessuna build, nessun database. Questo lo rende leggerissimo, veloce e pubblicabile praticamente ovunque (l'infrastruttura più semplice e portabile possibile).
+A differenza della versione precedente (ricostruita a mano), questo è un clone
+dell'**HTML, CSS, font e struttura reali** scaricati direttamente dal sito
+online. È completamente statico: nessun database, nessun server OpenCart,
+nessuna piattaforma Flazio. Solo file che puoi pubblicare ovunque.
 
-## File del progetto
+## Cosa contiene
 
-| File | Descrizione |
-|------|-------------|
-| `index.html` | Struttura e contenuti del sito (una sola pagina, con sezioni) |
-| `styles.css` | Grafica, colori e layout responsive |
-| `script.js` | Menu mobile, animazioni, switch lingua IT/EN, form contatti |
+13 pagine vetrina reali (il **negozio / e-commerce è escluso** come richiesto):
 
-## Come vederlo in locale
+| Pagina | File |
+|--------|------|
+| Home | `index.html` |
+| Tenute Arena (l'azienda) | `tenute-arena.html` |
+| Contatti | `contatti.html` |
+| Certificazioni | `certificazioni.html` |
+| Linee Olio (panoramica) | `linee-olio.html` |
+| Linea Sigillo | `linea-sigillo.html` |
+| Linea GDO | `linea-gdo.html` |
+| Linea Ho.Re.Ca. | `linea-horeca.html` |
+| Oli Aromatizzati | `oli-aromatizzati.html` |
+| Box Regalo | `box-regalo.html` |
+| Privacy Policy | `privacy-policy.html` |
+| Cookie Policy | `cookie-policy.html` |
+| Condizioni di vendita e resi | `condizioni-vendita.html` |
 
-Apri semplicemente `index.html` con un doppio clic, oppure avvia un server locale:
+Risorse locali:
+
+- `fontstyle.css`, `customstyle.css` — i CSS reali del sito.
+- `font/` — i 9 web-font reali (Bodoni Moda, TeX Gyre Heros, Benton Sans,
+  Roboto…) scaricati dal sito.
+- `img/` — favicon e immagine social (OG) reali.
+
+Cosa è stato tolto per renderlo autonomo: il motore JavaScript di Flazio, i
+widget chat/cookie, e tutti i link del **negozio** (shop, carrello, schede
+prodotto, area privata) sono stati neutralizzati. I link social
+(Facebook/Instagram) e la navigazione tra le pagine vetrina funzionano.
+
+## ⚠️ Nota sulle immagini dei prodotti
+
+Le **46 immagini di contenuto** (logo, foto degli oli, sfondi, icone) sono
+ospitate sul CDN pubblico di Flazio **`globaluserfiles.com`**. Nell'ambiente in
+cui è stato costruito questo clone quell'host era **bloccato dalla policy di
+rete** (errore 403) e non risultava archiviato su Wayback, quindi non è stato
+possibile scaricarle e renderle locali.
+
+Per questo motivo le immagini nel codice puntano ancora agli URL pubblici
+`https://globaluserfiles.com/...`: **si vedono correttamente in qualsiasi
+browser con connessione normale**, ma non sono ancora incluse tra i file del
+repository.
+
+Per rendere il sito **100% self-contained** (consigliato) basta scaricare quelle
+immagini una volta che l'host è raggiungibile e sostituire gli URL
+`https://globaluserfiles.com/...` con percorsi locali `img/...`. Tutto il resto
+(HTML, CSS, font, testi, layout) è già completamente locale e identico
+all'originale.
+
+## Vederlo in locale
 
 ```bash
 python3 -m http.server 8080
 # poi apri http://localhost:8080
 ```
 
-## Come pubblicarlo (nuova infrastruttura)
+## Pubblicarlo
 
-Essendo un sito statico puoi metterlo online **gratis** su una qualsiasi di queste piattaforme:
-
-### GitHub Pages
-1. Vai su **Settings → Pages** del repository.
-2. In *Build and deployment* scegli **Deploy from a branch**.
-3. Seleziona il branch e la cartella `/ (root)`, poi **Save**.
-4. Il sito sarà online su `https://<utente>.github.io/<repo>/`.
-
-### Netlify / Vercel
-- Collega il repository e pubblica: rilevano automaticamente un sito statico, nessuna configurazione necessaria.
-- Poi collega il dominio **www.tenutaarena.com** dalle impostazioni DNS del dominio.
-
-## Personalizzazione
-
-- **Foto reali**: il sito usa illustrazioni SVG al posto delle fotografie (non erano recuperabili in fase di ricostruzione). Per un risultato ottimale, sostituisci l'illustrazione nella sezione "La Tenuta" e aggiungi immagini dei prodotti reali. Metti i file in una cartella `images/` e sostituisci i blocchi `<svg>` / `.card-bottle` con tag `<img>`.
-- **Testi**: tutti i contenuti sono in `index.html`. Ogni testo bilingue usa gli attributi `data-it` / `data-en`.
-- **Colori**: modificabili in cima a `styles.css` (variabili `--olive-*`, `--gold`, `--cream`).
-- **Contatti**: indirizzo, telefono ed email sono nella sezione `#contatti` e nel footer di `index.html`.
+Sito statico → pubblicabile gratis su **GitHub Pages**, **Netlify** o
+**Vercel**. Su GitHub Pages: *Settings → Pages → Deploy from a branch*,
+cartella `/ (root)`. Il file `.nojekyll` è già presente perché le cartelle
+`font/` e `img/` vengano servite correttamente.
 
 ## Dati aziendali
 
-- **Tenute Arena** — Società Semplice Agricola · P.IVA 01208380863
-- C.da Grottacalda SP4 km 13,5 · 94015 Piazza Armerina (EN) — Sicilia
-- Tel. 0935 959638 · 0935 1976468 · info@tenutaarena.com
+- **Tenute Arena** — C.da Grottacalda SP4 km 13,5 · 94015 Piazza Armerina (EN)
+- Tel. 0935 959638 · info@tenutaarena.com
