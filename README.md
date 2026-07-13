@@ -29,11 +29,13 @@ nessuna piattaforma Flazio. Solo file che puoi pubblicare ovunque.
 | Cookie Policy | `cookie-policy.html` |
 | Condizioni di vendita e resi | `condizioni-vendita.html` |
 
-Risorse locali:
+Risorse locali (il sito è **100% self-contained**, nessuna dipendenza esterna):
 
-- `fontstyle.css`, `customstyle.css` — i CSS reali del sito.
+- `fontstyle.css`, `customstyle.css`, `gfonts.css` — i CSS reali del sito.
 - `font/` — i 9 web-font reali (Bodoni Moda, TeX Gyre Heros, Benton Sans,
-  Roboto…) scaricati dal sito.
+  Roboto…) più i sottoinsiemi Open Sans/Roboto in `font/gf/`.
+- `img/media/` — **le 120 immagini reali** (logo, foto degli oli, sfondi,
+  icone) scaricate dal sito.
 - `img/` — favicon e immagine social (OG) reali.
 
 Cosa è stato tolto per renderlo autonomo: il motore JavaScript di Flazio, i
@@ -41,24 +43,18 @@ widget chat/cookie, e tutti i link del **negozio** (shop, carrello, schede
 prodotto, area privata) sono stati neutralizzati. I link social
 (Facebook/Instagram) e la navigazione tra le pagine vetrina funzionano.
 
-## ⚠️ Nota sulle immagini dei prodotti
+## Nota sulle immagini dei prodotti
 
-Le **46 immagini di contenuto** (logo, foto degli oli, sfondi, icone) sono
-ospitate sul CDN pubblico di Flazio **`globaluserfiles.com`**. Nell'ambiente in
-cui è stato costruito questo clone quell'host era **bloccato dalla policy di
-rete** (errore 403) e non risultava archiviato su Wayback, quindi non è stato
-possibile scaricarle e renderle locali.
+Le immagini di contenuto erano ospitate sul CDN di Flazio
+`globaluserfiles.com`, un host **bloccato dalla policy di rete** dell'ambiente
+di build (errore 403). Sono state comunque **tutte recuperate** passando per
+l'Internet Archive (i server di archive.org scaricano l'immagine e la
+restituiscono da un host raggiungibile) e rese **locali** in `img/media/`.
 
-Per questo motivo le immagini nel codice puntano ancora agli URL pubblici
-`https://globaluserfiles.com/...`: **si vedono correttamente in qualsiasi
-browser con connessione normale**, ma non sono ancora incluse tra i file del
-repository.
-
-Per rendere il sito **100% self-contained** (consigliato) basta scaricare quelle
-immagini una volta che l'host è raggiungibile e sostituire gli URL
-`https://globaluserfiles.com/...` con percorsi locali `img/...`. Tutto il resto
-(HTML, CSS, font, testi, layout) è già completamente locale e identico
-all'originale.
+Delle 120 immagini è stato possibile recuperarne 119; l'unica non recuperabile
+era una piccola icona social nel footer (Instagram, con ID mancante sul CDN):
+è stata sostituita con un'icona equivalente. Il sito quindi si visualizza in
+modo identico all'originale **senza alcuna connessione esterna**.
 
 ## Vederlo in locale
 
