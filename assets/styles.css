@@ -1,0 +1,199 @@
+/* ===========================================================
+   Tenute Arena — sito vetrina statico (ricostruzione pulita)
+   Design system: tema scuro elegante, oro caldo, Bodoni
+   =========================================================== */
+
+/* ---------- Font reali del sito ---------- */
+@font-face{font-family:'Bodoni';src:url('../font/c-bodonimoda_72pt-regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Bodoni';src:url('../font/c-bodonimoda_72pt-bold.woff') format('woff');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Heros';src:url('../font/c-texgyreheros-regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Heros';src:url('../font/c-texgyre-bold.woff') format('woff');font-weight:700;font-style:normal;font-display:swap}
+
+:root{
+  --bg:#17140f;
+  --bg-2:#1f1b15;
+  --bg-3:#26211a;
+  --gold:#b28e5a;
+  --gold-soft:#c9b48f;
+  --cream:#ece3d3;
+  --text:#cbc3b5;
+  --muted:#8f8577;
+  --line:rgba(210,190,150,.16);
+  --maxw:1200px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:'Heros',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Bodoni',Georgia,'Times New Roman',serif;font-weight:400;color:var(--cream);line-height:1.08;margin:0}
+p{margin:0 0 1em}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:'Heros',sans-serif;text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;color:var(--gold);font-weight:700}
+.text-center{text-align:center}
+
+/* ---------- Bottoni ---------- */
+.btn{
+  display:inline-block;font-family:'Heros',sans-serif;font-weight:700;
+  text-transform:uppercase;letter-spacing:.18em;font-size:.74rem;
+  padding:15px 34px;border:1px solid var(--gold);color:var(--gold-soft);
+  background:transparent;cursor:pointer;transition:all .35s var(--ease);
+}
+.btn:hover{background:var(--gold);color:#17140f;border-color:var(--gold)}
+.btn-solid{background:var(--gold);color:#17140f;border-color:var(--gold)}
+.btn-solid:hover{background:transparent;color:var(--gold-soft)}
+
+/* ---------- Header ---------- */
+.topbar{background:#100e0a;color:var(--muted);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.topbar .container{display:flex;justify-content:center;align-items:center;min-height:38px;text-align:center}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(20,17,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;min-height:84px;gap:24px}
+.brand img{height:60px;width:auto}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;color:var(--cream);font-weight:500;transition:color .25s;position:relative;white-space:nowrap}
+.nav a:hover{color:var(--gold)}
+.has-drop{position:relative}
+.dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);
+  background:#1c1912;border:1px solid var(--line);min-width:230px;padding:8px 0;opacity:0;visibility:hidden;transition:all .28s var(--ease);box-shadow:0 24px 50px rgba(0,0,0,.5)}
+.has-drop:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown a{display:block;padding:11px 22px;font-size:.74rem;letter-spacing:.12em;color:var(--text)}
+.dropdown a:hover{background:var(--bg-3);color:var(--gold)}
+.nav-toggle{display:none;background:none;border:0;color:var(--cream);cursor:pointer;padding:8px}
+.nav-toggle svg{width:28px;height:28px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,13,9,.86) 0%,rgba(15,13,9,.55) 45%,rgba(15,13,9,.25) 100%)}
+.hero-inner{position:relative;z-index:2;max-width:640px;padding:60px 0}
+.hero h1{font-size:clamp(2.8rem,7vw,5.6rem);font-style:italic;margin:.18em 0 .3em;color:#fff}
+.hero .sub{font-family:'Heros',sans-serif;text-transform:uppercase;letter-spacing:.22em;font-size:.9rem;color:var(--cream);margin-bottom:2.2em}
+.scroll-cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;color:var(--gold);opacity:.8}
+.scroll-cue svg{width:26px;height:26px;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ---------- Sezioni generiche ---------- */
+section{position:relative}
+.section{padding:110px 0}
+.section-sm{padding:70px 0}
+.bg-2{background:var(--bg-2)}
+.bg-3{background:var(--bg-3)}
+.lead{font-size:1.12rem;color:var(--text);max-width:60ch}
+.section-head{max-width:720px;margin:0 auto 62px;text-align:center}
+.section-head h2{font-size:clamp(2rem,4.5vw,3.2rem);margin:.25em 0 .35em}
+.divider{width:60px;height:2px;background:var(--gold);margin:22px auto}
+
+/* ---------- Split (testo + immagine) ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.split.reverse .split-media{order:2}
+.split-media img{width:100%;border-radius:4px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.split h2{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:.4em}
+.split .eyebrow{margin-bottom:1.1em;display:block}
+
+/* ---------- Griglia prodotti ---------- */
+.products{display:grid;grid-template-columns:repeat(5,1fr);gap:26px}
+.product{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);padding:30px 20px 26px;text-align:center;transition:transform .4s var(--ease),border-color .4s}
+.product:hover{transform:translateY(-8px);border-color:var(--gold)}
+.product-img{height:230px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.product-img img{max-height:230px;width:auto;filter:drop-shadow(0 18px 26px rgba(0,0,0,.55))}
+.product h3{font-size:1.18rem;margin-bottom:.15em;color:var(--cream)}
+.product .cultivar{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);margin-bottom:.6em}
+.product .note{font-size:.82rem;color:var(--muted)}
+
+/* ---------- Lines / cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.card{border:1px solid var(--line);background:var(--bg-2);overflow:hidden;transition:transform .4s var(--ease)}
+.card:hover{transform:translateY(-6px)}
+.card-media{aspect-ratio:4/3;overflow:hidden}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.card:hover .card-media img{transform:scale(1.06)}
+.card-body{padding:26px 26px 30px}
+.card-body h3{font-size:1.4rem;margin-bottom:.4em}
+.card-body p{font-size:.92rem;color:var(--muted);margin-bottom:1.2em}
+
+/* ---------- Feature (valori) ---------- */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+.feature{text-align:center;padding:0 12px}
+.feature .ico{width:56px;height:56px;margin:0 auto 20px;color:var(--gold)}
+.feature .ico svg{width:100%;height:100%}
+.feature h3{font-size:1.3rem;margin-bottom:.5em}
+.feature p{font-size:.92rem;color:var(--muted)}
+
+/* ---------- Gift band ---------- */
+.band{position:relative;overflow:hidden}
+.band .split{gap:60px;align-items:center}
+
+/* ---------- CTA strip ---------- */
+.cta{background:var(--bg-3);text-align:center;padding:96px 0}
+.cta h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:.5em}
+
+/* ---------- Footer ---------- */
+.site-footer{background:#100e0a;border-top:1px solid var(--line);padding:70px 0 34px;font-size:.9rem}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.site-footer h4{font-family:'Heros',sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:.76rem;color:var(--gold);margin-bottom:20px}
+.site-footer a{color:var(--text)}.site-footer a:hover{color:var(--gold)}
+.site-footer ul{list-style:none;margin:0;padding:0}
+.site-footer li{margin-bottom:10px}
+.footer-brand img{height:66px;margin-bottom:18px}
+.footer-brand p{color:var(--muted);font-size:.9rem;max-width:34ch}
+.pay{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.pay img{height:26px;width:auto;opacity:.9}
+.socials{display:flex;gap:14px;margin-top:6px}
+.socials a{width:40px;height:40px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .3s}
+.socials a:hover{background:var(--gold);color:#17140f;border-color:var(--gold)}
+.socials svg{width:18px;height:18px}
+.footer-bottom{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.78rem;letter-spacing:.04em}
+.footer-bottom a{color:var(--muted)}.footer-bottom a:hover{color:var(--gold)}
+
+/* ---------- Pagina interna: hero compatto ---------- */
+.page-hero{position:relative;min-height:46vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.page-hero .hero-bg::after{background:rgba(15,13,9,.66)}
+.page-hero-inner{position:relative;z-index:2;padding:80px 24px}
+.page-hero h1{font-size:clamp(2.4rem,5vw,4rem);font-style:italic;color:#fff}
+.page-hero .eyebrow{display:block;margin-bottom:1em}
+.prose{max-width:760px;margin:0 auto}
+.prose h2{font-size:1.8rem;margin:1.6em 0 .5em;color:var(--cream)}
+.prose h3{font-size:1.3rem;margin:1.4em 0 .4em;color:var(--gold-soft)}
+.prose a{color:var(--gold);text-decoration:underline}
+.prose ul{padding-left:1.2em}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1024px){
+  .products{grid-template-columns:repeat(3,1fr)}
+  .nav{gap:20px}
+}
+@media(max-width:860px){
+  .nav-toggle{display:block}
+  .nav{position:fixed;inset:0 0 0 auto;width:min(80vw,340px);flex-direction:column;align-items:flex-start;justify-content:flex-start;
+    background:#141109;padding:96px 30px 40px;gap:6px;transform:translateX(100%);transition:transform .4s var(--ease);z-index:60;overflow-y:auto;border-left:1px solid var(--line)}
+  .nav.open{transform:none}
+  .nav a{padding:12px 0;width:100%;border-bottom:1px solid var(--line);font-size:.9rem}
+  .dropdown{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:0;background:transparent;padding:0 0 8px 14px;min-width:0}
+  .has-drop:hover .dropdown{transform:none}
+  .dropdown a{padding:9px 0;border:0}
+  .nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;visibility:hidden;transition:.3s;z-index:55}
+  .nav-backdrop.open{opacity:1;visibility:visible}
+  .split,.split.reverse .split-media{grid-template-columns:1fr;order:0}
+  .split{gap:36px}
+  .cards{grid-template-columns:1fr;gap:24px}
+  .features{grid-template-columns:1fr;gap:40px}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr;gap:36px}
+  .section{padding:72px 0}
+}
+@media(max-width:460px){
+  .products{grid-template-columns:1fr}
+  .hero h1{font-size:2.6rem}
+}
